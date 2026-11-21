@@ -1,0 +1,48 @@
+name: Update Happ timestamp and deeplink
+
+on:
+  schedule:
+    - cron: '30 4 * * *' # UTC, after upstream nightly builds
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: happ-update-main
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Update Happ profile and deeplink
+        run: python3 scripts/update_happ_profile.py
+      - name: Verify timestamps and Base64
+        run: python3 scripts/update_happ_profile.py --check
+      - name: Commit and push to main
+        id: publish
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add happ/MyRoute.json happ/happ-routing-link.txt README.md
+          if git diff --cached --quiet; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'No changes to commit'
+          else
+            git commit -m 'chore(happ): refresh timestamp and deeplink'
+            git push origin HEAD:main
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Purge jsDelivr cache
+        if: steps.publish.outputs.changed == 'true'
+        continue-on-error: true
+        run: bash scripts/purge_jsdelivr.sh

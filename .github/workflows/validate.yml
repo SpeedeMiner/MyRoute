@@ -1,0 +1,39 @@
+name: Validate Happ profiles
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install tests
+        run: python3 -m pip install -r requirements-dev.txt
+      - name: Run unit tests
+        run: python3 -m pytest -q
+      - name: Check Happ profiles, four timestamps and deeplink
+        run: python3 scripts/update_happ_profile.py --check
+
+  purge-cdn:
+    needs: validate
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Purge jsDelivr cache
+        continue-on-error: true
+        run: bash scripts/purge_jsdelivr.sh

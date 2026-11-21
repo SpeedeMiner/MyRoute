@@ -1,0 +1,53 @@
+{
+  "Name": "RoscomVPN",
+  "GlobalProxy": "true",
+  "RouteOrder": "block-proxy-direct",
+  "RemoteDNSType": "DoU",
+  "RemoteDNSDomain": "",
+  "RemoteDNSIP": "1.1.1.1",
+  "DomesticDNSType": "DoU",
+  "DomesticDNSDomain": "1.1.1.1",
+  "DomesticDNSIP": "1.1.1.1",
+  "Geoipurl": "https://cdn.jsdelivr.net/gh/SpeedeMiner/Geoip-ru-server@release/geoip_RU.dat?v={TIMESTAMP}",
+  "Geositeurl": "https://cdn.jsdelivr.net/gh/SpeedeMiner/Geosite-ru-light@release/geosite_RU.dat?v={TIMESTAMP}",
+  "LastUpdated": "{TIMESTAMP}",
+  "lastUpdatedDate": "{TIMESTAMP}",
+  "DnsHosts": {
+    "lkfl2.nalog.ru": "213.24.64.175",
+    "lknpd.nalog.ru": "213.24.64.181"
+  },
+  "DirectSites": [
+    "geosite:ru",
+    "geosite:microsoft",
+    "geosite:apple",
+    "geosite:epicgames",
+    "geosite:steam",
+    "geosite:twitch",
+    "geosite:pinterest",
+    "geosite:faceit"
+  ],
+  "DirectIp": [
+    "geoip:private",
+    "geoip:ru"
+  ],
+  "ProxySites": [
+    "geosite:google-play",
+    "geosite:github",
+    "geosite:twitch-ads",
+    "geosite:youtube",
+    "geosite:google-deepmind",
+    "geosite:telegram",
+    "discord-attachments-uploads-prd.storage.googleapis.com",
+    "4pda.to"
+  ],
+  "ProxyIp": [],
+  "BlockSites": [
+    "geosite:win-spy",
+    "domain:yandex.ru",
+    "geosite:block"
+  ],
+  "BlockIp": [],
+  "DomainStrategy": "IPIfNonMatch",
+  "FakeDNS": "false",
+  "UseChunkFiles": "true"
+}
