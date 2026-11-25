@@ -8,10 +8,10 @@
   "DomesticDNSType": "DoU",
   "DomesticDNSDomain": "1.1.1.1",
   "DomesticDNSIP": "1.1.1.1",
-  "Geoipurl": "https://cdn.jsdelivr.net/gh/SpeedeMiner/Geoip-ru-server@release/geoip_RU.dat?v=1795532854",
-  "Geositeurl": "https://cdn.jsdelivr.net/gh/SpeedeMiner/Geosite-ru-light@release/geosite_RU.dat?v=1795532854",
-  "LastUpdated": "1795532854",
-  "lastUpdatedDate": "1795532854",
+  "Geoipurl": "https://cdn.jsdelivr.net/gh/SpeedeMiner/Geoip-ru-server@release/geoip_RU.dat?v=1795618092",
+  "Geositeurl": "https://cdn.jsdelivr.net/gh/SpeedeMiner/Geosite-ru-light@release/geosite_RU.dat?v=1795618092",
+  "LastUpdated": "1795618092",
+  "lastUpdatedDate": "1795618092",
   "DnsHosts": {
     "lkfl2.nalog.ru": "213.24.64.175",
     "lknpd.nalog.ru": "213.24.64.181"
